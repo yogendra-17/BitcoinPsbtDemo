@@ -1,6 +1,12 @@
+const webpack = require('webpack');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   webpack: (config : any, { isServer }: { isServer: boolean }) => {
+    config.plugins.push(new webpack.ProvidePlugin({
+      Buffer: ['buffer', 'Buffer'],
+    })
+    )
     config.experiments = { ...config.experiments, asyncWebAssembly: true };
     if (!isServer) {
       config.resolve.fallback = {

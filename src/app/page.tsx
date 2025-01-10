@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { generateRandomKeyPair, createTaprootOutput, createTaprootScriptWithMultisigAndTimelock, toXOnly, TransactionService } from '@0xbridge/bitcoin-vault-trial';
+import { generateRandomKeyPair, createTaprootOutput, createTaprootScriptWithMultisigAndTimelock, toXOnly, TransactionService } from '@0xbridge/bitcoin-vault';
 import * as bitcoin from 'bitcoinjs-lib';
 import { networks } from 'bitcoinjs-lib';
 import { Hex } from 'bitcoinjs-lib/src/types';
@@ -44,14 +44,14 @@ export default function GenerateTaproot() {
     }
 
   }
-  const generateTransaction = () => {
+  const generateTransaction =async () => {
     try {
       const userKeyPair = generateRandomKeyPair();
   const avsKeyPair = generateRandomKeyPair();
   const userXOnly = toXOnly(userKeyPair.publicKey);
   const avsXOnly = toXOnly(avsKeyPair.publicKey);
   //generate address from pubkey
-  const user = bitcoin.payments.p2wpkh({ pubkey: userKeyPair.publicKey, network: networks.testnet }).address || '';
+  const user = await bitcoin.payments.p2wpkh({ pubkey: userKeyPair.publicKey, network: networks.testnet }).address || 'tb1q6638nhyg9wpsc4tzkj0rufdl83tk02mnee0969';
   
       const meta ={
         receiverAddress: '0x03AA93e006fBa956cdBAfa2b8EF789D0Cb63e7b4',
@@ -61,9 +61,9 @@ export default function GenerateTaproot() {
       };
       const userAddress = 'tb1q6638nhyg9wpsc4tzkj0rufdl83tk02mnee0969'
       const transactionService = new TransactionService();
-      const psbt = transactionService.createUnSignTransaction(
-        userXOnly.toString(),
+      const psbt = await transactionService.createUnsignedTransaction(
         userAddress,
+        userKeyPair.publicKey,
         user,
         100,
         100,

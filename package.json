@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@0xbridge/bitcoin-vault": "^1.0.2",
-    "@0xbridge/bitcoin-vault-trial": "^1.0.3",
+    "@0xbridge/bitcoin-vault": "^1.0.4",
+    "buffer": "^6.0.3",
     "next": "15.1.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
