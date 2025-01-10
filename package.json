@@ -9,14 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@0xbridge/bitcoin-vault": "^1.0.2",
+    "@0xbridge/bitcoin-vault-trial": "^1.0.3",
+    "next": "15.1.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.1.4"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@babel/plugin-transform-runtime": "^7.25.9",
+    "@babel/runtime-corejs3": "^7.26.0",
     "@types/node": "^20",
     "@types/react": "^19",
-    "@types/react-dom": "^19"
+    "@types/react-dom": "^19",
+    "typescript": "^5"
   }
 }
